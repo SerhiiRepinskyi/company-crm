@@ -3,13 +3,15 @@
 import React from 'react';
 import Image from 'next/image';
 import SidebarItem from '@/app/components/sidebar-item';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface SidebarProps {}
 
 export default function Sidebar({}: SidebarProps) {
   const router = useRouter();
+  const pathname = usePathname();
+
   const handleExitClick = () => {
     router.push('/');
   };
@@ -26,6 +28,7 @@ export default function Sidebar({}: SidebarProps) {
         />
         <ul className="space-y-7">
           <SidebarItem
+            current={pathname === '/dashboard'}
             pathname="/dashboard"
             src="/icons/squares.svg"
             alt="dashboard icon"
@@ -33,6 +36,7 @@ export default function Sidebar({}: SidebarProps) {
             Dashboard
           </SidebarItem>
           <SidebarItem
+            current={pathname === '/companies'}
             pathname="/companies"
             src="/icons/briefcase.svg"
             alt="companies icon"
