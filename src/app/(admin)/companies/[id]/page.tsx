@@ -1,13 +1,15 @@
 import React from 'react';
 
 export interface PageProps {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function Page({ params }: PageProps) {
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+
   return (
     <div className="py-6 px-10">
-      <p>{`Information about company (${params.id})`}</p>
+      <p>{`Information about company (${id})`}</p>
     </div>
   );
 }
